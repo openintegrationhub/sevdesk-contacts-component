@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "depth": {
+            "required": false,
+            "type": "integer",
+            "enum": [
+                "0",
+                "1"
+            ]
+        },
+        "customerNumber": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

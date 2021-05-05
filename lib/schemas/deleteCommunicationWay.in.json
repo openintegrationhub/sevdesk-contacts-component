@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "communicationWayId": {
+            "required": true,
+            "type": "integer"
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "contactId": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "required": [
+                "street",
+                "zip",
+                "city"
+            ],
+            "properties": {
+                "street": {
+                    "description": "Street of the address.",
+                    "type": "string"
+                },
+                "zip": {
+                    "description": "Zip of the address",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "City of the address",
+                    "type": "string"
+                },
+                "country": {
+                    "description": "ID of the country of the address",
+                    "type": "integer",
+                    "default": 1
+                },
+                "category": {
+                    "description": "ID of the category of the address",
+                    "type": "integer",
+                    "default": 43
+                }
+            },
+            "type": "object"
+        }
+    }
+}

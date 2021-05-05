@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "contactId": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "required": [
+                "key",
+                "value"
+            ],
+            "properties": {
+                "key": {
+                    "description": "ID of communication way key for the phone number which is added.",
+                    "type": "integer"
+                },
+                "value": {
+                    "description": "Value of the phone number.",
+                    "type": "string"
+                },
+                "main": {
+                    "description": "Defines if the phone number is the main number of the contact.",
+                    "type": "boolean",
+                    "default": 0
+                }
+            },
+            "type": "object"
+        }
+    }
+}

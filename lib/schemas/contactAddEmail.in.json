@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "contactId": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "required": [
+                "key",
+                "value"
+            ],
+            "properties": {
+                "key": {
+                    "description": "ID of communication way key for the email which is added.",
+                    "type": "integer"
+                },
+                "value": {
+                    "description": "Value of the email address.",
+                    "type": "string"
+                },
+                "main": {
+                    "description": "Defines if the email is the main email of the contact.",
+                    "type": "boolean",
+                    "default": 0
+                }
+            },
+            "type": "object"
+        }
+    }
+}
