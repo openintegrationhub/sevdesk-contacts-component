@@ -1,9 +1,8 @@
 {
     "type": "object",
     "properties": {
-        "customerNumber": {
-            "required": false,
-            "type": "string"
+        "objects": {
+            "type": "boolean"
         }
     }
 }

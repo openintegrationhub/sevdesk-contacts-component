@@ -1,4 +1,9 @@
 {
     "type": "object",
-    "properties": {}
+    "properties": {
+        "objects": {
+            "description": "Next available customer number",
+            "type": "string"
+        }
+    }
 }
