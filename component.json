@@ -28,16 +28,8 @@
         }
     },
     "triggers": {
-        "startFlow": {
-            "main": "./lib/triggers/startFlow.js",
-            "type": "polling",
-            "title": "Start Flow",
-            "fields": {}
-        }
-    },
-    "actions": {
         "getNextCustomerNumber": {
-            "main": "./lib/actions/getNextCustomerNumber.js",
+            "main": "./lib/triggers/getNextCustomerNumber.js",
             "title": "Get next free customer number",
             "description": "Retrieves the next available customer number. Avoids duplicates.",
             "fields": {
@@ -52,7 +44,7 @@
             }
         },
         "contactCustomerNumberAvailabilityCheck": {
-            "main": "./lib/actions/contactCustomerNumberAvailabilityCheck.js",
+            "main": "./lib/triggers/contactCustomerNumberAvailabilityCheck.js",
             "title": "Check if a customer number is available",
             "description": "Checks if a given customer number is available or already used.",
             "fields": {
@@ -67,7 +59,7 @@
             }
         },
         "getContacts": {
-            "main": "./lib/actions/getContacts.js",
+            "main": "./lib/triggers/getContacts.js",
             "title": "Retrieve contacts",
             "description": "There are a multitude of parameter which can be used to filter.<br>\r\n     A few of them are attached but\r\n     for a complete list please check out <a href='https://5677.extern.sevdesk.dev/apiOverview/index.html#/doc-contacts#filtering'>this</a> list",
             "fields": {
@@ -81,6 +73,38 @@
                 "out": "./lib/schemas/getContacts.out.json"
             }
         },
+        "contactGetCommunicationWays": {
+            "main": "./lib/triggers/contactGetCommunicationWays.js",
+            "title": "Get communication ways of contact",
+            "description": "Returns all communication ways of a given contact.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/contactGetCommunicationWays.in.json",
+                "out": "./lib/schemas/contactGetCommunicationWays.out.json"
+            }
+        },
+        "getCommunicationWays": {
+            "main": "./lib/triggers/getCommunicationWays.js",
+            "title": "Retrieve communication ways",
+            "description": "Returns all communication ways which have been added up until now. Filters can be added.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCommunicationWays.in.json",
+                "out": "./lib/schemas/getCommunicationWays.out.json"
+            }
+        }
+    },
+    "actions": {
         "createContact": {
             "main": "./lib/actions/createContact.js",
             "title": "Create a new contact",
@@ -124,21 +148,6 @@
             "metadata": {
                 "in": "./lib/schemas/updateContact.in.json",
                 "out": "./lib/schemas/updateContact.out.json"
-            }
-        },
-        "contactGetCommunicationWays": {
-            "main": "./lib/actions/contactGetCommunicationWays.js",
-            "title": "Get communication ways of contact",
-            "description": "Returns all communication ways of a given contact.",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactGetCommunicationWays.in.json",
-                "out": "./lib/schemas/contactGetCommunicationWays.out.json"
             }
         },
         "contactAddPhone": {
@@ -199,21 +208,6 @@
             "metadata": {
                 "in": "./lib/schemas/createContactAddress.in.json",
                 "out": "./lib/schemas/createContactAddress.out.json"
-            }
-        },
-        "getCommunicationWays": {
-            "main": "./lib/actions/getCommunicationWays.js",
-            "title": "Retrieve communication ways",
-            "description": "Returns all communication ways which have been added up until now. Filters can be added.",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/getCommunicationWays.in.json",
-                "out": "./lib/schemas/getCommunicationWays.out.json"
             }
         },
         "createCommunicationWay": {
