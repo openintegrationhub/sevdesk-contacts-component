@@ -1,4 +1,6 @@
-# ![LOGO](logo.png) sevDesk Contact API OIH Connector
+![LOGO](logo.png)
+
+# sevDesk Contact API OIH Connector
 
 ## Description
 
