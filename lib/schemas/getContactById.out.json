@@ -1,5 +1,4 @@
 {
-    "type": "object",
     "properties": {
         "objects": {
             "type": "array",
@@ -266,5 +265,6 @@
                 "type": "object"
             }
         }
-    }
+    },
+    "type": "object"
 }
