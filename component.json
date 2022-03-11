@@ -28,8 +28,13 @@
         }
     },
     "triggers": {
+        "lookup": {
+            "main": "./lib/lookups/lookup.js",
+            "title": "Function to run a lookup",
+            "description": "Function to call an internal trigger or action"
+        },
         "getNextCustomerNumber": {
-            "main": "./lib/triggers/getNextCustomerNumber.js",
+            "main": "./lib/triggers/trigger.js",
             "title": "Get next free customer number",
             "description": "Retrieves the next available customer number. Avoids duplicates.",
             "fields": {
@@ -38,28 +43,17 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/Contact/Factory/getNextCustomerNumber",
+                "method": "get"
+            },
             "metadata": {
                 "in": "./lib/schemas/getNextCustomerNumber.in.json",
                 "out": "./lib/schemas/getNextCustomerNumber.out.json"
             }
         },
-        "contactCustomerNumberAvailabilityCheck": {
-            "main": "./lib/triggers/contactCustomerNumberAvailabilityCheck.js",
-            "title": "Check if a customer number is available",
-            "description": "Checks if a given customer number is available or already used.",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactCustomerNumberAvailabilityCheck.in.json",
-                "out": "./lib/schemas/contactCustomerNumberAvailabilityCheck.out.json"
-            }
-        },
         "getContacts": {
-            "main": "./lib/triggers/getContacts.js",
+            "main": "./lib/triggers/trigger.js",
             "title": "Retrieve contacts",
             "description": "There are a multitude of parameter which can be used to filter.<br>\r\n     A few of them are attached but\r\n     for a complete list please check out <a href='https://5677.extern.sevdesk.dev/apiOverview/index.html#/doc-contacts#filtering'>this</a> list",
             "fields": {
@@ -68,28 +62,17 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/Contact",
+                "method": "get"
+            },
             "metadata": {
                 "in": "./lib/schemas/getContacts.in.json",
                 "out": "./lib/schemas/getContacts.out.json"
             }
         },
-        "contactGetCommunicationWays": {
-            "main": "./lib/triggers/contactGetCommunicationWays.js",
-            "title": "Get communication ways of contact",
-            "description": "Returns all communication ways of a given contact.",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactGetCommunicationWays.in.json",
-                "out": "./lib/schemas/contactGetCommunicationWays.out.json"
-            }
-        },
         "getCommunicationWays": {
-            "main": "./lib/triggers/getCommunicationWays.js",
+            "main": "./lib/triggers/trigger.js",
             "title": "Retrieve communication ways",
             "description": "Returns all communication ways which have been added up until now. Filters can be added.",
             "fields": {
@@ -98,30 +81,57 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/CommunicationWay",
+                "method": "get"
+            },
             "metadata": {
                 "in": "./lib/schemas/getCommunicationWays.in.json",
                 "out": "./lib/schemas/getCommunicationWays.out.json"
             }
-        }
-    },
-    "actions": {
-        "createContact": {
-            "main": "./lib/actions/createContact.js",
-            "title": "Create a new contact",
-            "description": "Creates a new contact.<br>\r\n     For adding addresses and communication ways, you will need to use the ContactAddress and CommunicationWay endpoints.",
+        },
+        "contactGetCommunicationWays": {
+            "main": "./lib/triggers/trigger.js",
+            "title": "Get communication ways of contact",
+            "description": "Returns all communication ways of a given contact.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/Contact/{contactId}/getCommunicationWays",
+                "method": "get"
+            },
             "metadata": {
-                "in": "./lib/schemas/createContact.in.json",
-                "out": "./lib/schemas/createContact.out.json"
+                "in": "./lib/schemas/contactGetCommunicationWays.in.json",
+                "out": "./lib/schemas/contactGetCommunicationWays.out.json"
             }
         },
+        "contactCustomerNumberAvailabilityCheck": {
+            "main": "./lib/triggers/trigger.js",
+            "title": "Check if a customer number is available",
+            "description": "Checks if a given customer number is available or already used.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "callParams": {
+                "pathName": "/Contact/Mapper/checkCustomerNumberAvailability",
+                "method": "get"
+            },
+            "metadata": {
+                "in": "./lib/schemas/contactCustomerNumberAvailabilityCheck.in.json",
+                "out": "./lib/schemas/contactCustomerNumberAvailabilityCheck.out.json"
+            }
+        }
+    },
+    "actions": {
         "getContactById": {
-            "main": "./lib/actions/getContactById.js",
+            "main": "./lib/actions/action.js",
             "title": "Find contact by ID",
             "description": "Returns a single contact",
             "fields": {
@@ -130,58 +140,17 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/Contact/{contactId}",
+                "method": "get"
+            },
             "metadata": {
                 "in": "./lib/schemas/getContactById.in.json",
                 "out": "./lib/schemas/getContactById.out.json"
             }
         },
-        "updateContact": {
-            "main": "./lib/actions/updateContact.js",
-            "title": "Update an existing contact",
-            "description": "Update a contact",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/updateContact.in.json",
-                "out": "./lib/schemas/updateContact.out.json"
-            }
-        },
-        "contactAddPhone": {
-            "main": "./lib/actions/contactAddPhone.js",
-            "title": "Add phone number to contact",
-            "description": "Adds a phone number to a contact.",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactAddPhone.in.json",
-                "out": "./lib/schemas/contactAddPhone.out.json"
-            }
-        },
-        "contactAddEmail": {
-            "main": "./lib/actions/contactAddEmail.js",
-            "title": "Add email to contact",
-            "description": "Adds an email to a contact.",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactAddEmail.in.json",
-                "out": "./lib/schemas/contactAddEmail.out.json"
-            }
-        },
         "contactAddAddress": {
-            "main": "./lib/actions/contactAddAddress.js",
+            "main": "./lib/actions/action.js",
             "title": "Add address to contact",
             "description": "Adds an address to a contact.",
             "fields": {
@@ -190,13 +159,38 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/Contact/{contactId}/addAddress",
+                "method": "post",
+                "requestContentType": "json"
+            },
             "metadata": {
                 "in": "./lib/schemas/contactAddAddress.in.json",
                 "out": "./lib/schemas/contactAddAddress.out.json"
             }
         },
+        "createContact": {
+            "main": "./lib/actions/action.js",
+            "title": "Create a new contact",
+            "description": "Creates a new contact.<br>\r\n     For adding addresses and communication ways, you will need to use the ContactAddress and CommunicationWay endpoints.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "callParams": {
+                "pathName": "/Contact",
+                "method": "post",
+                "requestContentType": "json"
+            },
+            "metadata": {
+                "in": "./lib/schemas/createContact.in.json",
+                "out": "./lib/schemas/createContact.out.json"
+            }
+        },
         "createContactAddress": {
-            "main": "./lib/actions/createContactAddress.js",
+            "main": "./lib/actions/action.js",
             "title": "Create a new contact address",
             "description": "Creates a new contact address.",
             "fields": {
@@ -205,42 +199,38 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/ContactAddress",
+                "method": "post",
+                "requestContentType": "json"
+            },
             "metadata": {
                 "in": "./lib/schemas/createContactAddress.in.json",
                 "out": "./lib/schemas/createContactAddress.out.json"
             }
         },
-        "createCommunicationWay": {
-            "main": "./lib/actions/createCommunicationWay.js",
-            "title": "Create a new contact communication way",
-            "description": "Creates a new contact communication way.",
+        "contactAddPhone": {
+            "main": "./lib/actions/action.js",
+            "title": "Add phone number to contact",
+            "description": "Adds a phone number to a contact.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
                     "label": "Debug this step (log more data)"
                 }
             },
-            "metadata": {
-                "in": "./lib/schemas/createCommunicationWay.in.json",
-                "out": "./lib/schemas/createCommunicationWay.out.json"
-            }
-        },
-        "deleteCommunicationWay": {
-            "main": "./lib/actions/deleteCommunicationWay.js",
-            "title": "Deletes a communication way",
-            "fields": {
-                "verbose": {
-                    "viewClass": "CheckBoxView",
-                    "label": "Debug this step (log more data)"
-                }
+            "callParams": {
+                "pathName": "/Contact/{contactId}/addPhone",
+                "method": "post",
+                "requestContentType": "json"
             },
             "metadata": {
-                "in": "./lib/schemas/deleteCommunicationWay.in.json",
-                "out": "./lib/schemas/deleteCommunicationWay.out.json"
+                "in": "./lib/schemas/contactAddPhone.in.json",
+                "out": "./lib/schemas/contactAddPhone.out.json"
             }
         },
         "createAccountingContact": {
-            "main": "./lib/actions/createAccountingContact.js",
+            "main": "./lib/actions/action.js",
             "title": "Create a new accounting contact",
             "description": "Creates a new accounting contact.",
             "fields": {
@@ -249,9 +239,92 @@
                     "label": "Debug this step (log more data)"
                 }
             },
+            "callParams": {
+                "pathName": "/AccountingContact",
+                "method": "post",
+                "requestContentType": "json"
+            },
             "metadata": {
                 "in": "./lib/schemas/createAccountingContact.in.json",
                 "out": "./lib/schemas/createAccountingContact.out.json"
+            }
+        },
+        "deleteCommunicationWay": {
+            "main": "./lib/actions/action.js",
+            "title": "Deletes a communication way",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "callParams": {
+                "pathName": "/CommunicationWay/{communicationWayId}/delete",
+                "method": "delete"
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteCommunicationWay.in.json",
+                "out": "./lib/schemas/deleteCommunicationWay.out.json"
+            }
+        },
+        "updateContact": {
+            "main": "./lib/actions/action.js",
+            "title": "Update an existing contact",
+            "description": "Update a contact",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "callParams": {
+                "pathName": "/Contact/{contactId}",
+                "method": "put",
+                "requestContentType": "json"
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateContact.in.json",
+                "out": "./lib/schemas/updateContact.out.json"
+            }
+        },
+        "createCommunicationWay": {
+            "main": "./lib/actions/action.js",
+            "title": "Create a new contact communication way",
+            "description": "Creates a new contact communication way.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "callParams": {
+                "pathName": "/CommunicationWay",
+                "method": "post",
+                "requestContentType": "json"
+            },
+            "metadata": {
+                "in": "./lib/schemas/createCommunicationWay.in.json",
+                "out": "./lib/schemas/createCommunicationWay.out.json"
+            }
+        },
+        "contactAddEmail": {
+            "main": "./lib/actions/action.js",
+            "title": "Add email to contact",
+            "description": "Adds an email to a contact.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "callParams": {
+                "pathName": "/Contact/{contactId}/addEmail",
+                "method": "post",
+                "requestContentType": "json"
+            },
+            "metadata": {
+                "in": "./lib/schemas/contactAddEmail.in.json",
+                "out": "./lib/schemas/contactAddEmail.out.json"
             }
         }
     }

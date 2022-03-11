@@ -1,6 +1,15 @@
 {
     "type": "object",
     "properties": {
+        "contact[id]": {
+            "required": false,
+            "type": "string"
+        },
+        "contact[objectName]": {
+            "required": false,
+            "type": "string",
+            "default": "Contact"
+        },
         "type": {
             "required": false,
             "type": "string",
@@ -18,15 +27,6 @@
                 "0",
                 "1"
             ]
-        },
-        "contact_id_": {
-            "required": false,
-            "type": "string"
-        },
-        "contact_objectName_": {
-            "required": false,
-            "type": "string",
-            "default": "Contact"
         }
     }
 }
