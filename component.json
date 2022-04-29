@@ -46,19 +46,6 @@
                 "out": "./lib/schemas/getNextCustomerNumber.out.json"
             }
         },
-        "contactCustomerNumberAvailabilityCheck": {
-            "main": "./lib/triggers/trigger.js",
-            "title": "Check if a customer number is available",
-            "description": "Checks if a given customer number is available or already used.",
-            "callParams": {
-                "pathName": "/Contact/Mapper/checkCustomerNumberAvailability",
-                "method": "get"
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactCustomerNumberAvailabilityCheck.in.json",
-                "out": "./lib/schemas/contactCustomerNumberAvailabilityCheck.out.json"
-            }
-        },
         "getContacts": {
             "main": "./lib/triggers/trigger.js",
             "title": "Retrieve contacts",
@@ -70,6 +57,19 @@
             "metadata": {
                 "in": "./lib/schemas/getContacts.in.json",
                 "out": "./lib/schemas/getContacts.out.json"
+            }
+        },
+        "contactCustomerNumberAvailabilityCheck": {
+            "main": "./lib/triggers/trigger.js",
+            "title": "Check if a customer number is available",
+            "description": "Checks if a given customer number is available or already used.",
+            "callParams": {
+                "pathName": "/Contact/Mapper/checkCustomerNumberAvailability",
+                "method": "get"
+            },
+            "metadata": {
+                "in": "./lib/schemas/contactCustomerNumberAvailabilityCheck.in.json",
+                "out": "./lib/schemas/contactCustomerNumberAvailabilityCheck.out.json"
             }
         },
         "contactGetCommunicationWays": {
@@ -114,58 +114,31 @@
                 "out": "./lib/schemas/updateContact.out.json"
             }
         },
-        "contactAddPhone": {
+        "contactAddEmail": {
             "main": "./lib/actions/action.js",
-            "title": "Add phone number to contact",
-            "description": "Adds a phone number to a contact.",
+            "title": "Add email to contact",
+            "description": "Adds an email to a contact.",
             "callParams": {
-                "pathName": "/Contact/{contactId}/addPhone",
+                "pathName": "/Contact/{contactId}/addEmail",
                 "method": "post",
                 "requestContentType": "json"
             },
             "metadata": {
-                "in": "./lib/schemas/contactAddPhone.in.json",
-                "out": "./lib/schemas/contactAddPhone.out.json"
+                "in": "./lib/schemas/contactAddEmail.in.json",
+                "out": "./lib/schemas/contactAddEmail.out.json"
             }
         },
-        "createContact": {
+        "getContactById": {
             "main": "./lib/actions/action.js",
-            "title": "Create a new contact",
-            "description": "Creates a new contact.<br>\r\n     For adding addresses and communication ways, you will need to use the ContactAddress and CommunicationWay endpoints.",
+            "title": "Find contact by ID",
+            "description": "Returns a single contact",
             "callParams": {
-                "pathName": "/Contact",
-                "method": "post",
-                "requestContentType": "json"
+                "pathName": "/Contact/{contactId}",
+                "method": "get"
             },
             "metadata": {
-                "in": "./lib/schemas/createContact.in.json",
-                "out": "./lib/schemas/createContact.out.json"
-            }
-        },
-        "contactAddAddress": {
-            "main": "./lib/actions/action.js",
-            "title": "Add address to contact",
-            "description": "Adds an address to a contact.",
-            "callParams": {
-                "pathName": "/Contact/{contactId}/addAddress",
-                "method": "post",
-                "requestContentType": "json"
-            },
-            "metadata": {
-                "in": "./lib/schemas/contactAddAddress.in.json",
-                "out": "./lib/schemas/contactAddAddress.out.json"
-            }
-        },
-        "deleteCommunicationWay": {
-            "main": "./lib/actions/action.js",
-            "title": "Deletes a communication way",
-            "callParams": {
-                "pathName": "/CommunicationWay/{communicationWayId}/delete",
-                "method": "delete"
-            },
-            "metadata": {
-                "in": "./lib/schemas/deleteCommunicationWay.in.json",
-                "out": "./lib/schemas/deleteCommunicationWay.out.json"
+                "in": "./lib/schemas/getContactById.in.json",
+                "out": "./lib/schemas/getContactById.out.json"
             }
         },
         "createCommunicationWay": {
@@ -182,6 +155,20 @@
                 "out": "./lib/schemas/createCommunicationWay.out.json"
             }
         },
+        "createAccountingContact": {
+            "main": "./lib/actions/action.js",
+            "title": "Create a new accounting contact",
+            "description": "Creates a new accounting contact.",
+            "callParams": {
+                "pathName": "/AccountingContact",
+                "method": "post",
+                "requestContentType": "json"
+            },
+            "metadata": {
+                "in": "./lib/schemas/createAccountingContact.in.json",
+                "out": "./lib/schemas/createAccountingContact.out.json"
+            }
+        },
         "createContactAddress": {
             "main": "./lib/actions/action.js",
             "title": "Create a new contact address",
@@ -196,45 +183,58 @@
                 "out": "./lib/schemas/createContactAddress.out.json"
             }
         },
-        "getContactById": {
+        "deleteCommunicationWay": {
             "main": "./lib/actions/action.js",
-            "title": "Find contact by ID",
-            "description": "Returns a single contact",
+            "title": "Deletes a communication way",
             "callParams": {
-                "pathName": "/Contact/{contactId}",
-                "method": "get"
+                "pathName": "/CommunicationWay/{communicationWayId}/delete",
+                "method": "delete"
             },
             "metadata": {
-                "in": "./lib/schemas/getContactById.in.json",
-                "out": "./lib/schemas/getContactById.out.json"
+                "in": "./lib/schemas/deleteCommunicationWay.in.json",
+                "out": "./lib/schemas/deleteCommunicationWay.out.json"
             }
         },
-        "contactAddEmail": {
+        "contactAddPhone": {
             "main": "./lib/actions/action.js",
-            "title": "Add email to contact",
-            "description": "Adds an email to a contact.",
+            "title": "Add phone number to contact",
+            "description": "Adds a phone number to a contact.",
             "callParams": {
-                "pathName": "/Contact/{contactId}/addEmail",
+                "pathName": "/Contact/{contactId}/addPhone",
                 "method": "post",
                 "requestContentType": "json"
             },
             "metadata": {
-                "in": "./lib/schemas/contactAddEmail.in.json",
-                "out": "./lib/schemas/contactAddEmail.out.json"
+                "in": "./lib/schemas/contactAddPhone.in.json",
+                "out": "./lib/schemas/contactAddPhone.out.json"
             }
         },
-        "createAccountingContact": {
+        "contactAddAddress": {
             "main": "./lib/actions/action.js",
-            "title": "Create a new accounting contact",
-            "description": "Creates a new accounting contact.",
+            "title": "Add address to contact",
+            "description": "Adds an address to a contact.",
             "callParams": {
-                "pathName": "/AccountingContact",
+                "pathName": "/Contact/{contactId}/addAddress",
                 "method": "post",
                 "requestContentType": "json"
             },
             "metadata": {
-                "in": "./lib/schemas/createAccountingContact.in.json",
-                "out": "./lib/schemas/createAccountingContact.out.json"
+                "in": "./lib/schemas/contactAddAddress.in.json",
+                "out": "./lib/schemas/contactAddAddress.out.json"
+            }
+        },
+        "createContact": {
+            "main": "./lib/actions/action.js",
+            "title": "Create a new contact",
+            "description": "Creates a new contact.<br>\r\n     For adding addresses and communication ways, you will need to use the ContactAddress and CommunicationWay endpoints.",
+            "callParams": {
+                "pathName": "/Contact",
+                "method": "post",
+                "requestContentType": "json"
+            },
+            "metadata": {
+                "in": "./lib/schemas/createContact.in.json",
+                "out": "./lib/schemas/createContact.out.json"
             }
         }
     }
